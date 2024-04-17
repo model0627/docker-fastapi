@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 ## 커스텀
 from core.scheduler import cronjob_schedulers_running
 
-#from event.router import router as EventRouter 
+from event.router import app as EventRouter 
 
 
 tags_metadata = [
@@ -46,7 +46,7 @@ app.add_middleware(
 )
 
 # 신규 URI
-#app.include_router(EventRouter, tags=["EVENT"], prefix="/analyze")
+app.include_router(EventRouter, tags=["EVENT"], prefix="/analyze")
 
 # 배치 스케줄, 크론 작업 실행, 기동 시 수행
 cronjob_schedulers_running()

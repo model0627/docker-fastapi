@@ -1,10 +1,13 @@
 version: "3.7"
 
 services:
-  web:
-    image: myimage
-    command: uvicorn app.main:app --host 0.0.0.0 --port 80 --reload
+  fast-api:
+    image: fast-api
+    build:
+      args:
+        dockerfile: ./DockerFile
+    command: uvicorn main:app --host 0.0.0.0 --port 8080 --reload
     ports:
-      - 80:80
+      - 8080:8080
     volumes:
-      - ./app:/code/app
+      - ./app:/app
